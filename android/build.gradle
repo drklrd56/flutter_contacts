@@ -2,8 +2,8 @@ group 'co.quis.flutter_contacts'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.21'
-    ext.kotlin_coroutines_version = '1.6.4'
+    ext.kotlin_version = '1.9.22'
+    ext.kotlin_coroutines_version = '1.8.0'
     repositories {
         google()
         jcenter()
@@ -11,7 +11,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath 'com.android.tools.build:gradle:8.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -28,10 +28,19 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 34
 
     if (!project.hasProperty("namespace")) {
         namespace 'co.quis.flutter_contacts'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
     sourceSets {
@@ -39,6 +48,7 @@ android {
     }
     defaultConfig {
         minSdkVersion 16
+        targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
